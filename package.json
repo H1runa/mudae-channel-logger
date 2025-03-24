@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "discord.js-selfbot-v13": "^3.6.1",
+    "dotenv": "^16.4.7",
+    "moment": "^2.30.1"
+  },
+  "name": "mudaelogger",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
