@@ -25,23 +25,24 @@ client.on('ready', async () => {
   //function to query the character details
   async function query_character(name){    
     const filter = m => m.author.username.includes('Mudae') && m.embeds.length>0;    
-    while (true){
+    for (let i = 0; i<4; i++){
       try{        
         await query_channel.send('$im '+name);
         const collected = await query_channel.awaitMessages({filter, max: 1, time: 10000, errors: ['time']});
-        const embed = collected.first().embeds[0];        
+        const embed = collected.first().embeds[0];     
+        // console.log('\n'+embed.description+'\n');   
         let char_name = embed.author.name;
         let series = null;        
 
         if (embed.description.includes('female')){
-          series = embed.description.match(/^(.*?)<:female/)[1].trim();
+          series = embed.description.match(/^(.*?)<:female/s)[1].trim();
         } else if (embed.description.includes('male')){
-          series = embed.description.match(/^(.*?)<:male/)[1].trim();
+          series = embed.description.match(/^(.*?)<:male/s)[1].trim();
         } 
 
-        let kakera = embed.description.match(/\*  · \*\*(.*?)<:kakera/)[1].trim();
-        let claim_rank = embed.description.match(/Claim Rank: #(.*?)\n/)[1].trim();
-        let like_rank = embed.description.match(/Like Rank: #([\d,]+)/)[1].trim();              
+        let kakera = embed.description.match(/\*  · \*\*(.*?)<:kakera/s)[1].trim();
+        let claim_rank = embed.description.match(/Claim Rank: #(.*?)\n/s)[1].trim();
+        let like_rank = embed.description.match(/Like Rank: #([\d,]+)/s)[1].trim();              
                 
         console.log(`\nName: ${char_name}\nSeries: ${series}\nKakera: ${kakera}\nClaim Rank: ${claim_rank}\nLike Rank: ${like_rank}\n`);
         break;
